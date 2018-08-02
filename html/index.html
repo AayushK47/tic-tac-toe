@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div class="container">
+        <div class="box">
+            <img id='00' onclick="clicked(this.id)">
+        </div>
+        <div class="box">
+            <img id='01'  onclick="clicked(this.id)" class="ver">
+        </div>
+        <div class="box">
+            <img id='02'  onclick="clicked(this.id)">
+        </div>
+        <div class="box ">
+            <img id='10'  onclick="clicked(this.id)" class="hori">
+        </div>
+        <div class="box">
+            <img id='11'  onclick="clicked(this.id)" class="hori ver">
+        </div>
+        <div class="box">
+            <img id='12'  onclick="clicked(this.id)" class="hori">
+        </div>
+        <div class="box">
+            <img id='20'  onclick="clicked(this.id)" class="">
+        </div>
+        <div class="box">
+            <img id='21'  onclick="clicked(this.id)" class="ver">
+        </div>
+        <div class="box">
+            <img id='22' onclick="clicked(this.id)" class="">
+        </div>
+    </div>
+    <h3 id="result"></h3>
+    <button onclick="init()">New Game</button>
+    <script src="../js/script.js"></script>
+</body>
+</html>

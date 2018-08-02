@@ -1,0 +1,43 @@
+div.container{
+    width: 40%;
+    margin: 50px auto;
+    padding: 10px 20px; 
+}
+
+div.box{
+    display: inline;
+}
+
+h1 {
+    width: 20%;
+    text-align: center;
+    margin-left: 37%;
+}
+
+button {
+    margin-left: 42%;
+}
+h3 {
+    width: 20%;
+    text-align: center;
+    margin-left: 35%;
+}
+img{
+    padding: 0;
+    margin: 0;
+    height: 25%;
+    width: 25%;
+}
+
+img:hover{
+    cursor: pointer;
+}
+img.hori{
+    border-top: solid 5px black;
+    border-bottom: solid 5px black;
+}
+
+img.ver{
+    border-left: solid 5px black;
+    border-right: solid 5px black;
+}
