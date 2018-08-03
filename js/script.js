@@ -75,6 +75,26 @@ let halt = () => {
     console.log('Halted');
 }
 
+// Timer Implementation
+let countdown = () => {
+    seconds = document.getElementById('countdown').innerHTML;
+    seconds = parseInt(seconds, 10);
+
+    if (seconds == 1) {
+        temp = document.getElementById('countdown');
+        auto();
+        return;
+    }
+
+    seconds--;
+    temp = document.getElementById('countdown');
+    temp.innerHTML = seconds;
+    timeOut = setTimeout(countdown, 1000);
+}
+
+countdown();
+
+
 let auto = () => {
     let move = Math.floor(Math.random() * ((possible_moves.length-1) - 0 + 1)) + 0;
     clicked(possible_moves[move]);
@@ -82,6 +102,7 @@ let auto = () => {
 
 // Call to action for every click on the grid
 let clicked = _id => {
+    clearTimeout(timeOut);
     // check if the move is valid
     if(grid[_id[0]][_id[1]] === -1)
     {
@@ -113,5 +134,7 @@ let clicked = _id => {
 
         turn = (turn===0 ? 1:0);
         document.getElementById('result').textContent = turn ? 'Player 1\'s Turn' : 'Player 2\'s Turn' ;
+        document.getElementById('countdown').innerHTML = 10;
+        countdown();
     }
 }
