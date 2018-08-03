@@ -1,16 +1,19 @@
-let turn,grid;          // Variables
+let turn,grid,possible_moves;          // Variables
 
 // Initialize the variables and set initial values
 let init = () => {
-    turn = 1;
+    turn = Math.floor((Math.random() *10)%9)%2===0 ? 1:0 ;
     grid = [  [-1,-1,-1],
               [-1,-1,-1],
               [-1,-1,-1]  ];
+    possible_moves = ['00','01','02','10','11','12','20','21','22'];
     let img = document.getElementsByTagName('img');
     for(let i=0;i<img.length;i++){
         img[i].setAttribute('src','../images/white.jpg');
         img[i].setAttribute('onclick','clicked(this.id)');
     }
+    document.getElementById('auto').setAttribute('onclick','auto()');
+    document.getElementById('result').textContent = turn ? 'Player 1\'s Turn' : 'Player 2\'s Turn' ;
 }
 
 init();         // Run the init function
@@ -68,34 +71,47 @@ let halt = () => {
     for(let i=0;i<img.length;i++){
         img[i].onclick = null;
     }
+    document.getElementById('auto').onclick = null;
     console.log('Halted');
+}
+
+let auto = () => {
+    let move = Math.floor(Math.random() * ((possible_moves.length-1) - 0 + 1)) + 0;
+    clicked(possible_moves[move]);
 }
 
 // Call to action for every click on the grid
 let clicked = _id => {
-    let flag = false;
+    // check if the move is valid
     if(grid[_id[0]][_id[1]] === -1)
     {
+        //if 'Yes' Then execute the move
         grid[_id[0]][_id[1]] = turn;
         let i = '../images/' + turn.toString() + '.jpg';
         document.getElementById(_id).setAttribute('src',i);
-        flag = !flag;
+        possible_moves.splice(possible_moves.indexOf(_id),1);
     }
     else {
+        // else tell the user that the move is invalid
          alert('This cell cannot be selected');
     }
-    
+    // check if the player won
     if(checkRows() || checkColumns() || checkDiagonal() ) {
+        // if 'yes' then display the winner and stop the game
         let temp = turn + 1;
         document.getElementById('result').textContent = 'Player ' + temp.toString() + ' Wins';
         halt();
     }
-
-    if(isGridFull()){
+    // check if the grid is full and no more moves are possibles
+    else if(isGridFull()){
+        // If yes then show that the game is draw and stop the game
         document.getElementById('result').textContent = 'Draw';
         halt()
     }
+    // Switch/Toggle the player after every turn
+    else {
 
-    if(flag)    
         turn = (turn===0 ? 1:0);
+        document.getElementById('result').textContent = turn ? 'Player 1\'s Turn' : 'Player 2\'s Turn' ;
+    }
 }
