@@ -1,8 +1,10 @@
-let turn,grid,possible_moves;          // Variables
+let turn,grid,possible_moves,timeOut;          // Variables
 
 // Initialize the variables and set initial values
 let init = () => {
-    turn = Math.floor((Math.random() *10)%9)%2===0 ? 1:0 ;
+    if(timeOut)
+        clearTimeout(timeOut);
+    turn = Math.floor(Math.random()*10)%2 ? 1:0 ;
     grid = [  [-1,-1,-1],
               [-1,-1,-1],
               [-1,-1,-1]  ];
@@ -14,14 +16,14 @@ let init = () => {
     }
     document.getElementById('countdown').textContent = 10;
     document.getElementById('auto').setAttribute('onclick','auto()');
-    document.getElementById('result').textContent = turn ? 'Player 1\'s Turn' : 'Player 2\'s Turn' ;
+    document.getElementById('result').textContent = `Player ${turn+1}'s turn` ;
 }
 
 init();         // Run the init function
 
 // Check if a row has same character
 let checkRows = () => {
-    let temp = [turn,turn,turn];
+    let temp = [turn,turn,turn]
     for(let i=0;i<3;i++) {
         if(JSON.stringify(grid[i]) == JSON.stringify(temp))
             return true;
@@ -132,8 +134,8 @@ let clicked = _id => {
     }
     // Switch/Toggle the player after every turn
     else {
-        document.getElementById('result').textContent = turn ? 'Player 1\'s Turn' : 'Player 2\'s Turn' ;
         turn = (turn===0 ? 1:0);
+        document.getElementById('result').textContent = `Player ${turn+1}'s Turn` ;
         document.getElementById('countdown').innerHTML = 10;
         countdown();
     }
