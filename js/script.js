@@ -12,6 +12,7 @@ let init = () => {
         img[i].setAttribute('src','../images/white.jpg');
         img[i].setAttribute('onclick','clicked(this.id)');
     }
+    document.getElementById('countdown').textContent = 10;
     document.getElementById('auto').setAttribute('onclick','auto()');
     document.getElementById('result').textContent = turn ? 'Player 1\'s Turn' : 'Player 2\'s Turn' ;
 }
@@ -119,8 +120,8 @@ let clicked = _id => {
     // check if the player won
     if(checkRows() || checkColumns() || checkDiagonal() ) {
         // if 'yes' then display the winner and stop the game
-        let temp = turn + 1;
-        document.getElementById('result').textContent = 'Player ' + temp.toString() + ' Wins';
+        console.log(turn);
+        document.getElementById('result').textContent = `Player ${turn+1} wins`;
         halt();
     }
     // check if the grid is full and no more moves are possibles
@@ -131,9 +132,8 @@ let clicked = _id => {
     }
     // Switch/Toggle the player after every turn
     else {
-
-        turn = (turn===0 ? 1:0);
         document.getElementById('result').textContent = turn ? 'Player 1\'s Turn' : 'Player 2\'s Turn' ;
+        turn = (turn===0 ? 1:0);
         document.getElementById('countdown').innerHTML = 10;
         countdown();
     }

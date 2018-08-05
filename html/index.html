@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>Tic Tac Toe</title>
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
     <div class="container">
-        <div class="box">
-            <img id='00' onclick="clicked(this.id)">
+        <div class="layout">
+            <div class="box">
+                <img id='00' onclick="clicked(this.id)">
+            </div>
+            <div class="box">
+                <img id='01'  onclick="clicked(this.id)" class="ver">
+            </div>
+            <div class="box">
+                <img id='02'  onclick="clicked(this.id)">
+            </div>
+            <div class="box ">
+                <img id='10'  onclick="clicked(this.id)" class="hori">
+            </div>
+            <div class="box">
+                <img id='11'  onclick="clicked(this.id)" class="hori ver">
+            </div>
+            <div class="box">
+                <img id='12'  onclick="clicked(this.id)" class="hori">
+            </div>
+            <div class="box">
+                <img id='20'  onclick="clicked(this.id)" class="">
+            </div>
+            <div class="box">
+                <img id='21'  onclick="clicked(this.id)" class="ver">
+            </div>
+            <div class="box">
+                <img id='22' onclick="clicked(this.id)" class="">
+            </div>
         </div>
-        <div class="box">
-            <img id='01'  onclick="clicked(this.id)" class="ver">
-        </div>
-        <div class="box">
-            <img id='02'  onclick="clicked(this.id)">
-        </div>
-        <div class="box ">
-            <img id='10'  onclick="clicked(this.id)" class="hori">
-        </div>
-        <div class="box">
-            <img id='11'  onclick="clicked(this.id)" class="hori ver">
-        </div>
-        <div class="box">
-            <img id='12'  onclick="clicked(this.id)" class="hori">
-        </div>
-        <div class="box">
-            <img id='20'  onclick="clicked(this.id)" class="">
-        </div>
-        <div class="box">
-            <img id='21'  onclick="clicked(this.id)" class="ver">
-        </div>
-        <div class="box">
-            <img id='22' onclick="clicked(this.id)" class="">
-        </div>
+        <h3>Time Left: <span id="countdown">10</span></h3>
+        <h3 id="result"></h3>
+        <input style="margin-left: 33%;" type="submit" class="btn btn-outline-success" onclick="init(); countdown();" value="New Game">
+        <input type="submit" class="btn btn-outline-success" id="auto" value="Auto Move"><br>
     </div>
-    <h3 id="result"></h3>
-    <button onclick="init()">New Game</button>
-    <button id="auto">Auto Move</button><br>
-    <div id="countdown">10</div>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script src="../js/script.js"></script>
 </body>
 </html>
