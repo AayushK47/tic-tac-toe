@@ -1,0 +1,25 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "Tic-Tac-Toe Game",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AayushK47/tic-tac-toe.git"
+  },
+  "author": "Aayush Kurup",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AayushK47/tic-tac-toe/issues"
+  },
+  "homepage": "https://github.com/AayushK47/tic-tac-toe#readme"
+}

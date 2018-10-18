@@ -1,10 +1,13 @@
 let turn,grid,possible_moves,timeOut;          // Variables
 
 // Initialize the variables and set initial values
+
+all_moves = [];
+
 let init = () => {
     if(timeOut)
         clearTimeout(timeOut);
-    turn = Math.floor(Math.random()*10)%2 ? 1:0 ;
+    turn = 0 ;
     grid = [  [-1,-1,-1],
               [-1,-1,-1],
               [-1,-1,-1]  ];
@@ -17,6 +20,7 @@ let init = () => {
     document.getElementById('countdown').textContent = 10;
     document.getElementById('auto').setAttribute('onclick','auto()');
     document.getElementById('result').textContent = `Player ${turn+1}'s turn` ;
+    all_moves = []
 }
 
 init();         // Run the init function
@@ -103,19 +107,36 @@ let auto = () => {
     clicked(possible_moves[move]);
 }
 
+console.log(grid);
+
+let send = (move)=>{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", `/${JSON.stringify(move)}`, true); // true for asynchronous 
+    xmlHttp.send();
+}
+
 // Call to action for every click on the grid
 let clicked = _id => {
+    let prev_grid = grid;
+    let isValid = true;
+
     clearTimeout(timeOut);
     // check if the move is valid
     if(grid[_id[0]][_id[1]] === -1)
     {
         //if 'Yes' Then execute the move
+        isValid = true;
         grid[_id[0]][_id[1]] = turn;
         let i = '../images/' + turn.toString() + '.jpg';
         document.getElementById(_id).setAttribute('src',i);
         possible_moves.splice(possible_moves.indexOf(_id),1);
+        send({
+            current_state: prev_grid,
+            next_move: _id
+        });
     }
     else {
+        isValid = false;
         // else tell the user that the move is invalid
          alert('This cell cannot be selected');
     }
@@ -133,10 +154,13 @@ let clicked = _id => {
         halt()
     }
     // Switch/Toggle the player after every turn
-    else {
+    else if(isValid) {
         turn = (turn===0 ? 1:0);
         document.getElementById('result').textContent = `Player ${turn+1}'s Turn` ;
         document.getElementById('countdown').innerHTML = 10;
+        countdown();
+    }
+    else{
         countdown();
     }
 }
