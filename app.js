@@ -1,3 +1,5 @@
+// Requiring essential external files.
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -20,6 +22,8 @@ app.get('/:move',(req,res)=>{
     //console.log(moves[0].current_state);
     res.redirect('/');
 });
+
+// Successful connection to the server.
 
 app.listen(3000,()=>{
     console.log('App listening to port 3000');
